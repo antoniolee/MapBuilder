@@ -57,21 +57,24 @@ public class GameMap {
     }
 
     public boolean nextToCell(int x, int y, IMapCell cell) {
-        for (int i = x - 1; i <= x + 1; i++) {
-            for (int j = y - 1; j <= y + 1; j++) {
-                if (i < 0 || i >= this.x) {
-                    continue;
-                }
-                if (j < 0 || j >= this.y) {
-                    continue;
-                }
-                if (i == x && j == y) {
-                    continue;
-                }
-                if (getCell(i, j).equals(cell)) {
-                    return true;
-                }
-            }
+        int xL = x - 1;
+        int xR = x + 1;
+        int yL = y - 1;
+        int yR = y + 1;
+
+        
+        
+        if (xL >= 0 && getCell(xL, y).equals(cell)) {
+            return true;
+        }
+        if (xR < getX() && getCell(xR, y).equals(cell)) {
+            return true;
+        }
+        if (yL >= 0 && getCell(x, yL).equals(cell)) {
+            return true;
+        }
+        if (yR < getY() && getCell(x, yR).equals(cell)) {
+            return true;
         }
         return false;
     }

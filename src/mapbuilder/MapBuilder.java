@@ -16,10 +16,10 @@ public class MapBuilder {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(false, 30, 30);
-        for(int i = 0; i < map.getX(); i++){
-            for(int j = 0; j < map.getY(); j++){
+        DLAGenerator gen = new DLAGenerator(1, .5);
+        GameMap map = gen.generateMap(false, 60, 30);
+        for(int j = 0; j < map.getY(); j++){
+            for(int i = 0; i < map.getX(); i++){
                 System.out.print(map.getCell(i,j).asciiChar());
             }
             System.out.println();

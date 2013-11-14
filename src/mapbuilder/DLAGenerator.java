@@ -36,13 +36,13 @@ public class DLAGenerator implements IMapGenerator {
     @Override
     public GameMap generateMap(boolean visualizer, int x, int y) {
         numFloor = (int) (x * y * percentFill);
-        
+
         GameMap retMap = new GameMap(x, y);
         retMap.fillMap(MapCellWall.getInstance());
         for (int i = 0; i < initFloors; i++) {
-            retMap.setCell(rand.nextInt(x), rand.nextInt(y), MapCellFloor.getInstance());
+            retMap.setCell(rand.nextInt(x-2)+1, rand.nextInt(y-2)+1, MapCellFloor.getInstance());
         }
-System.out.println(numFloor);
+        System.out.println(numFloor);
         for (int i = 0; i < numFloor; i++) {
             doWalk(retMap);
         }
@@ -51,14 +51,12 @@ System.out.println(numFloor);
     }
 
     private void doWalk(GameMap retMap) {
-        System.out.println("walk");
-        int x = rand.nextInt(retMap.getX());
-        int y = rand.nextInt(retMap.getY());
-        while (!retMap.getCell(x, y).isPassable()) {
-            x = rand.nextInt(retMap.getX());
-            y = rand.nextInt(retMap.getY());
-        }
-        //System.out.println("\tinit");
+        int x;
+        int y;
+        do {
+            x = rand.nextInt(retMap.getX()-2)+1;
+            y = rand.nextInt(retMap.getY()-2)+1;
+        } while (retMap.getCell(x, y).isPassable());
         while (!retMap.nextToCell(x, y, MapCellFloor.getInstance())) {
             switch (getDirection()) {
                 case UP:
@@ -74,9 +72,8 @@ System.out.println(numFloor);
                     x++;
                     break;
             }
-            x = Math.max(0, Math.min(x, retMap.getX()));
-            y = Math.max(0, Math.min(y, retMap.getY()));
-            System.out.println(x + " " + y);
+            x = Math.max(1, Math.min(x, retMap.getX()-2));
+            y = Math.max(1, Math.min(y, retMap.getY()-2));
         }
         retMap.setCell(x, y, MapCellFloor.getInstance());
     }
