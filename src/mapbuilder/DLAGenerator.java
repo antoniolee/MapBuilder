@@ -17,6 +17,8 @@ public class DLAGenerator implements IMapGenerator {
     double percentFill;
     Random rand;
     int numFloor;
+    boolean visual;
+    Visualizer visualizer = new Visualizer();
 
     public DLAGenerator() {
     }
@@ -34,19 +36,23 @@ public class DLAGenerator implements IMapGenerator {
     }
 
     @Override
-    public GameMap generateMap(boolean visualizer, int x, int y) {
+    public GameMap generateMap(boolean visual, int x, int y) {
+        this. visual = visual;
         numFloor = (int) (x * y * percentFill);
 
         GameMap retMap = new GameMap(x, y);
         retMap.fillMap(MapCellWall.getInstance());
         for (int i = 0; i < initFloors; i++) {
-            retMap.setCell(rand.nextInt(x-2)+1, rand.nextInt(y-2)+1, MapCellFloor.getInstance());
+            retMap.setCell(rand.nextInt(x - 2) + 1, rand.nextInt(y - 2) + 1, MapCellFloor.getInstance());
         }
         System.out.println(numFloor);
         for (int i = 0; i < numFloor; i++) {
             doWalk(retMap);
         }
 
+        if (visual) {
+            visualizer.displayMap(retMap);
+        }
         return retMap;
     }
 
@@ -54,8 +60,8 @@ public class DLAGenerator implements IMapGenerator {
         int x;
         int y;
         do {
-            x = rand.nextInt(retMap.getX()-2)+1;
-            y = rand.nextInt(retMap.getY()-2)+1;
+            x = rand.nextInt(retMap.getX() - 2) + 1;
+            y = rand.nextInt(retMap.getY() - 2) + 1;
         } while (retMap.getCell(x, y).isPassable());
         while (!retMap.nextToCell(x, y, MapCellFloor.getInstance())) {
             switch (getDirection()) {
@@ -72,10 +78,18 @@ public class DLAGenerator implements IMapGenerator {
                     x++;
                     break;
             }
-            x = Math.max(1, Math.min(x, retMap.getX()-2));
-            y = Math.max(1, Math.min(y, retMap.getY()-2));
+            x = Math.max(1, Math.min(x, retMap.getX() - 2));
+            y = Math.max(1, Math.min(y, retMap.getY() - 2));
+            if(false){
+                retMap.setCell(x, y, MapCellBlue.getInstance());
+                visualizer.displayMap(retMap);
+                retMap.setCell(x, y, MapCellWall.getInstance());
+            }
         }
         retMap.setCell(x, y, MapCellFloor.getInstance());
+        if (visual) {
+            visualizer.displayMap(retMap);
+        }
     }
 
     private enum direction {
