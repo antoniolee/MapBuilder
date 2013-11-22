@@ -44,7 +44,7 @@ public class DLAGenerator implements IMapGenerator {
         for (int i = 0; i < initFloors; i++) {
             retMap.setCell(rand.nextInt(x - 2) + 1, rand.nextInt(y - 2) + 1, MapCellFloor.getInstance());
         }
-        System.out.println(numFloor);
+        //System.out.println(numFloor);
         for (int i = 0; i < numFloor; i++) {
             doWalk(retMap);
         }

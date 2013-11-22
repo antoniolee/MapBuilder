@@ -18,18 +18,20 @@ public class MapBuilder {
     public static void main(String[] args) {
         
         //If you want to run Eric's generator uncomment this
-        DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(true, 50, 50);
-        DijkstraPathFinder path = new DijkstraPathFinder();
-        System.out.println(path.isConnected(true, map));
+        //DLAGenerator gen = new DLAGenerator(1, .4);
+        //GameMap map = gen.generateMap(true, 30, 30);
+        
         
         //If you want to run Fernando's generator uncomment this
-        //SteeringDungeonGenerator gen = new SteeringDungeonGenerator();
-        //GameMap map = gen.generateMap(true, 50, 50, 20);
+        SteeringDungeonGenerator gen = new SteeringDungeonGenerator();
+        GameMap map = gen.generateMap(true, 100, 100, 20);
 		
 	//If you want to run Marco's and Antonio's generator uncomment this
         //MazeGenerator gen = new MazeGenerator(100, 100);
         //GameMap map = gen.generateMap(true, 51,51);
+        
+        DijkstraPathFinder path = new DijkstraPathFinder();
+        System.out.println(path.isConnected(true, map));
         
         //prints out map into ascii
         /*

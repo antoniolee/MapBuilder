@@ -15,6 +15,10 @@ public class DijkstraPathFinder implements IPathFinder {
 
     @Override
     public boolean isConnected(boolean visual, GameMap map) {
+        if(map.getEntry() == null || map.getExit() == null){
+            return false;
+        }
+        
         LinkedList<Pair<Integer, Integer>> open = new LinkedList<Pair<Integer, Integer>>();
         LinkedList<Pair<Integer, Integer>> closed = new LinkedList<Pair<Integer, Integer>>();
 
