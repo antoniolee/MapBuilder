@@ -12,6 +12,6 @@ package mapbuilder;
  */
 public interface IPathFinder {
     
-    public boolean isConnected(GameMap map);
+    public boolean isConnected(boolean visual, GameMap map);
     
 }

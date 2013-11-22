@@ -18,7 +18,6 @@ public class DLAGenerator implements IMapGenerator {
     Random rand;
     int numFloor;
     boolean visual;
-    Visualizer visualizer = new Visualizer();
 
     public DLAGenerator() {
     }
@@ -37,7 +36,7 @@ public class DLAGenerator implements IMapGenerator {
 
     @Override
     public GameMap generateMap(boolean visual, int x, int y) {
-        this. visual = visual;
+        this.visual = visual;
         numFloor = (int) (x * y * percentFill);
 
         GameMap retMap = new GameMap(x, y);
@@ -51,8 +50,33 @@ public class DLAGenerator implements IMapGenerator {
         }
 
         if (visual) {
-            visualizer.displayMap(retMap);
+            Visualizer.displayMap(retMap);
         }
+        Pair<Integer, Integer> pair;
+        do {
+            pair = new Pair<Integer, Integer>(rand.nextInt(x - 2) + 1, rand.nextInt(y - 2) + 1);
+            if (visual) {
+                IMapCell temp = retMap.getCell(pair);
+                retMap.setCell(pair, MapCellEntry.getInstance());
+                Visualizer.displayMap(retMap);
+                retMap.setCell(pair, temp);
+            }
+        } while (!retMap.getCell(pair).isPassable());
+        retMap.setEntry(pair);
+        retMap.setCell(pair, MapCellEntry.getInstance());
+
+        do {
+            pair = new Pair<Integer, Integer>(rand.nextInt(x - 2) + 1, rand.nextInt(y - 2) + 1);
+            if (visual) {
+                IMapCell temp = retMap.getCell(pair);
+                retMap.setCell(pair, MapCellExit.getInstance());
+                Visualizer.displayMap(retMap);
+                retMap.setCell(pair, temp);
+            }
+        } while (!retMap.getCell(pair).isPassable() && !retMap.getEntry().equals(pair));
+        retMap.setExit(pair);
+        retMap.setCell(pair, MapCellExit.getInstance());
+
         return retMap;
     }
 
@@ -80,15 +104,15 @@ public class DLAGenerator implements IMapGenerator {
             }
             x = Math.max(1, Math.min(x, retMap.getX() - 2));
             y = Math.max(1, Math.min(y, retMap.getY() - 2));
-            if(false){
+            if (false) {
                 retMap.setCell(x, y, MapCellBlue.getInstance());
-                visualizer.displayMap(retMap);
+                Visualizer.displayMap(retMap);
                 retMap.setCell(x, y, MapCellWall.getInstance());
             }
         }
         retMap.setCell(x, y, MapCellFloor.getInstance());
         if (visual) {
-            visualizer.displayMap(retMap);
+            Visualizer.displayMap(retMap);
         }
     }
 

@@ -16,21 +16,29 @@ public class MapBuilder {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        GameMap map = new GameMap(100,100);
-        map.fillMap(MapCellWall.getInstance());
-        map.fillMap(1,1,98,98, MapCellBlue.getInstance());
-        map.fillMap(2,2,97,97, MapCellFloor.getInstance());
-        Visualizer.displayMap(map);
-        */
         
+        //If you want to run Eric's generator uncomment this
         DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(false, 100, 100);
+        GameMap map = gen.generateMap(true, 50, 50);
+        DijkstraPathFinder path = new DijkstraPathFinder();
+        System.out.println(path.isConnected(true, map));
+        
+        //If you want to run Fernando's generator uncomment this
+        //SteeringDungeonGenerator gen = new SteeringDungeonGenerator();
+        //GameMap map = gen.generateMap(true, 50, 50, 20);
+		
+	//If you want to run Marco's and Antonio's generator uncomment this
+        //MazeGenerator gen = new MazeGenerator(100, 100);
+        //GameMap map = gen.generateMap(true, 51,51);
+        
+        //prints out map into ascii
+        /*
         for(int j = 0; j < map.getY(); j++){
             for(int i = 0; i < map.getX(); i++){
                 System.out.print(map.getCell(i,j).asciiChar());
             }
             System.out.println();
-        }
+        }*/
     }
+    
 }

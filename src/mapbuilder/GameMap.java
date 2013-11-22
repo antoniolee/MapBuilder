@@ -14,8 +14,8 @@ public class GameMap {
     private int x;
     private int y;
     private IMapCell[][] cells;
-    private MapCoordinate entry = null;
-    private MapCoordinate exit = null;
+    private Pair<Integer, Integer> entry = null;
+    private Pair<Integer, Integer> exit = null;
 
     public GameMap(int x, int y) {
         this.x = x;
@@ -26,6 +26,8 @@ public class GameMap {
     public GameMap(GameMap map) {
         this.x = map.getX();
         this.y = map.getY();
+        this.entry = map.getEntry();
+        this.exit = map.getExit();
         cells = new IMapCell[x][y];
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
@@ -45,9 +47,17 @@ public class GameMap {
     public IMapCell getCell(int x, int y) {
         return cells[x][y];
     }
+    
+    public IMapCell getCell(Pair<Integer, Integer> tile){
+        return getCell(tile.getFirst(), tile.getSecond());
+    }
 
     public void setCell(int x, int y, IMapCell cell) {
         cells[x][y] = cell;
+    }
+    
+    public void setCell(Pair<Integer, Integer> tile, IMapCell cell){
+        setCell(tile.getFirst(), tile.getSecond(), cell);
     }
 
     public void fillMap(IMapCell cell) {
@@ -99,19 +109,33 @@ public class GameMap {
         return false;
     }
 
-    public MapCoordinate getEntry() {
+    public Pair<Integer, Integer> getEntry() {
         return entry;
     }
 
-    public MapCoordinate getExit() {
+    public Pair<Integer, Integer> getExit() {
         return exit;
     }
 
-    public void setEntry(MapCoordinate entry) {
+    public void setEntry(Pair<Integer, Integer> entry) {
         this.entry = entry;
     }
 
-    public void setExit(MapCoordinate exit) {
+    public void setExit(Pair<Integer, Integer> exit) {
         this.exit = exit;
+    }
+
+    public boolean validTile(int x, int y) {
+        if (x < 0 || y < 0) {
+            return false;
+        }
+        if (x >= this.getX() || y >= this.getY()) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean validTile(Pair<Integer, Integer> tile){
+        return validTile(tile.getFirst(), tile.getSecond());
     }
 }
