@@ -14,6 +14,8 @@ public class GameMap {
     private int x;
     private int y;
     private IMapCell[][] cells;
+    private MapCoordinate entry = null;
+    private MapCoordinate exit = null;
 
     public GameMap(int x, int y) {
         this.x = x;
@@ -95,5 +97,21 @@ public class GameMap {
             return true;
         }
         return false;
+    }
+
+    public MapCoordinate getEntry() {
+        return entry;
+    }
+
+    public MapCoordinate getExit() {
+        return exit;
+    }
+
+    public void setEntry(MapCoordinate entry) {
+        this.entry = entry;
+    }
+
+    public void setExit(MapCoordinate exit) {
+        this.exit = exit;
     }
 }

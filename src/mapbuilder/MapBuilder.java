@@ -25,7 +25,7 @@ public class MapBuilder {
         */
         
         DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(true, 100, 100);
+        GameMap map = gen.generateMap(false, 100, 100);
         for(int j = 0; j < map.getY(); j++){
             for(int i = 0; i < map.getX(); i++){
                 System.out.print(map.getCell(i,j).asciiChar());
