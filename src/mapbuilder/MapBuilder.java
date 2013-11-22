@@ -17,19 +17,29 @@ public class MapBuilder {
      */
     public static void main(String[] args) {
         
+        long startTime = System.nanoTime();
+        
         //If you want to run Eric's generator uncomment this
         DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(true, 50, 50);
+        GameMap map = gen.generateMap(true, 100, 70);
         DijkstraPathFinder path = new DijkstraPathFinder();
         System.out.println(path.isConnected(true, map));
         
         //If you want to run Fernando's generator uncomment this
         //SteeringDungeonGenerator gen = new SteeringDungeonGenerator();
-        //GameMap map = gen.generateMap(true, 50, 50, 20);
-		
-	//If you want to run Marco's and Antonio's generator uncomment this
+        //GameMap map = gen.generateMap(true, 100, 70, 70);
+        
+        //If you want to run Marco's and Antonio's generator uncomment this
         //MazeGenerator gen = new MazeGenerator(100, 100);
-        //GameMap map = gen.generateMap(true, 51,51);
+        //GameMap map = gen.generateMap(true, 50 , 50);
+        
+        long endTime = System.nanoTime();
+        long ellapsedTime = endTime - startTime;
+        System.out.println("Time it took to complete dungeon "
+                + ellapsedTime/1000000
+                + " milliseconds or "
+                + ellapsedTime/1000000000
+                + " seconds.");
         
         //prints out map into ascii
         /*
@@ -38,7 +48,11 @@ public class MapBuilder {
                 System.out.print(map.getCell(i,j).asciiChar());
             }
             System.out.println();
-        }*/
+        }
+        */
+        
+        //Exit when finished
+        //System.exit(0);
     }
     
 }
