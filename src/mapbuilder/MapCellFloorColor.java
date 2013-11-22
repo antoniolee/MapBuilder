@@ -6,16 +6,20 @@
 package mapbuilder;
 
 import java.awt.Color;
+import java.util.HashMap;
 
 /**
  *
  * @author Eric
  */
-public class MapCellEntry implements IMapCell {
+public class MapCellFloorColor implements IMapCell {
+    
+    private static HashMap<Color, MapCellFloorColor> cells = new HashMap<Color, MapCellFloorColor>();
+    private Color color;
 
-    private MapCellEntry() {
+    private MapCellFloorColor(Color color) {
+        this.color = color;
     }
-    private static MapCellEntry instance;
 
     @Override
     public boolean isPassable() {
@@ -24,19 +28,19 @@ public class MapCellEntry implements IMapCell {
 
     @Override
     public char asciiChar() {
-        return 'O';
+        return ' ';
     }
 
     @Override
     public Color tileColor() {
-        return Color.GREEN;
+        return color;
     }
 
-    public static IMapCell getInstance() {
-        if (instance == null) {
-            instance = new MapCellEntry();
+    public static IMapCell getInstance(Color color) {
+        if (cells.get(color) == null) {
+            cells.put(color, new MapCellFloorColor(color));
         }
-        return instance;
+        return cells.get(color);
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package mapbuilder;
 
+import java.awt.Color;
 import java.util.*;
 
 /**
@@ -57,10 +58,10 @@ public class DijkstraPathFinder implements IPathFinder {
             if(visual){
                 GameMap temp = new GameMap(map);
                 for(Pair<Integer, Integer> pair : open){
-                    temp.setCell(pair, MapCellBlue.getInstance());
+                    temp.setCell(pair, MapCellFloorColor.getInstance(Color.BLUE));
                 }
                 for(Pair<Integer, Integer> pair : closed){
-                    temp.setCell(pair, MapCellYellow.getInstance());
+                    temp.setCell(pair, MapCellFloorColor.getInstance(Color.YELLOW));
                 }
                 temp.setCell(temp.getEntry(), MapCellEntry.getInstance());
                 

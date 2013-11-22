@@ -5,6 +5,7 @@
  */
 package mapbuilder;
 
+import java.awt.Color;
 import java.util.Random;
 import static java.lang.Math.floor;
 
@@ -62,7 +63,7 @@ public class SteeringDungeonGenerator {
                             continue;
                         }
                         if (x == (int) room.position.x || x == (int) room.position.x + room.width-1 || y == (int) room.position.y || y == (int) room.position.y + room.height-1)
-                            gameMap.setCell(x, y, MapCellGray.getInstance());
+                            gameMap.setCell(x, y, MapCellFloorColor.getInstance(Color.GRAY));
                         else
                             gameMap.setCell(x, y, MapCellFloor.getInstance());
 

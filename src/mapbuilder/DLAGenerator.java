@@ -6,6 +6,7 @@
 package mapbuilder;
 
 import java.util.Random;
+import java.awt.Color;
 
 /**
  *
@@ -105,7 +106,7 @@ public class DLAGenerator implements IMapGenerator {
             x = Math.max(1, Math.min(x, retMap.getX() - 2));
             y = Math.max(1, Math.min(y, retMap.getY() - 2));
             if (false) {
-                retMap.setCell(x, y, MapCellBlue.getInstance());
+                retMap.setCell(x, y, MapCellFloorColor.getInstance(Color.BLUE));
                 Visualizer.displayMap(retMap);
                 retMap.setCell(x, y, MapCellWall.getInstance());
             }

@@ -21,7 +21,7 @@ public class MapBuilder {
         
         //If you want to run Eric's generator uncomment this
         DLAGenerator gen = new DLAGenerator(1, .4);
-        GameMap map = gen.generateMap(true, 100, 70);
+        GameMap map = gen.generateMap(true, 100, 100);
         DijkstraPathFinder path = new DijkstraPathFinder();
         System.out.println(path.isConnected(true, map));
         
@@ -41,8 +41,7 @@ public class MapBuilder {
                 + ellapsedTime/1000000000
                 + " seconds.");
         
-        DijkstraPathFinder path = new DijkstraPathFinder();
-        System.out.println(path.isConnected(true, map));
+
         
         //prints out map into ascii
         /*
@@ -53,9 +52,5 @@ public class MapBuilder {
             System.out.println();
         }
         */
-        
-        //Exit when finished
-        //System.exit(0);
-    }
-    
+    }    
 }
