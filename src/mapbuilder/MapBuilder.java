@@ -24,6 +24,10 @@ public class MapBuilder {
         //If you want to run Fernando's generator uncomment this
         //SteeringDungeonGenerator gen = new SteeringDungeonGenerator();
         //GameMap map = gen.generateMap(true, 50, 50, 20);
+		
+		//If you want to run Marco's and Antonio's generator uncomment this
+        //MazeGenerator gen = new MazeGenerator(100, 100);
+        //GameMap map = gen.generateMap(true, 100 , 100);
         
         //prints out map into ascii
         for(int j = 0; j < map.getY(); j++){
