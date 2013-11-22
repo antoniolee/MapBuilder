@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author Fernando
+ * @author Fernando & Ashwin
  */
 public class Room {
 
@@ -41,8 +41,8 @@ public class Room {
         //bBox.Width = width;
         //bBox.Height = height;
         
-        bBox.Width = 4;//(int) (rand.nextDouble() * 8 + 2);
-        bBox.Height = 4;//(int) (rand.nextDouble() * 4 - 1 + bBox.Width);
+        bBox.Width = (int) (rand.nextDouble() * 7 + 2);
+        bBox.Height = (int) (rand.nextDouble() * 2 - 1 + bBox.Width);
         this.width = bBox.Width;
         this.height = bBox.Height;
         
@@ -81,7 +81,7 @@ public class Room {
             velocity = velocity.mult(maxSpeed);
         }
         position = position.sum(velocity);
-        System.out.println(velocity.x);
+        //System.out.println(velocity.x);
         if (velocity.length() != 0)
             settled = false;
         else

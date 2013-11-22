@@ -11,10 +11,12 @@ import java.awt.Color;
  *
  * @author Eric
  */
-public class MapCellYellow implements IMapCell {
+public class MapCellEntry implements IMapCell {
 
-    private static MapCellYellow instance;
-    private MapCellYellow(){}
+    private MapCellEntry() {
+    }
+    private static MapCellEntry instance;
+
     @Override
     public boolean isPassable() {
         return true;
@@ -22,17 +24,17 @@ public class MapCellYellow implements IMapCell {
 
     @Override
     public char asciiChar() {
-        return ' ';
+        return 'O';
     }
 
     @Override
     public Color tileColor() {
-        return Color.YELLOW;
+        return Color.GREEN;
     }
 
     public static IMapCell getInstance() {
         if (instance == null) {
-            instance = new MapCellYellow();
+            instance = new MapCellEntry();
         }
         return instance;
     }
